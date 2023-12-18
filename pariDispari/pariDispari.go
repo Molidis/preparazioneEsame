@@ -12,13 +12,13 @@ func isEven(n int) bool {
 
 func main() {
 
-	var previousWasEven bool
-	primo, err := strconv.Atoi(os.Args[1])
-
 	if len(os.Args) == 1 {
 		fmt.Println("nessun valore in ingresso")
 		return
 	}
+
+	var previousWasEven bool
+	primo, err := strconv.Atoi(os.Args[1])
 
 	if isEven(primo) {
 		previousWasEven = true
@@ -37,10 +37,12 @@ func main() {
 			fmt.Println("elemento in posizione", i+2, "non valido")
 			return
 		}
+
 		if (isEven(n) && previousWasEven) || (!isEven(n) && !previousWasEven) {
 			fmt.Println("elemento in posizione", i+2, "non valido")
 			return
 		}
+
 		if isEven(n) {
 			previousWasEven = true
 		} else {
