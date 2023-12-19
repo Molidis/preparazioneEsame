@@ -55,4 +55,13 @@ func (r Rectangle) String() string {
 	return fmt.Sprintf("(%v %v)", r.pLL, r.pUr)
 }
 
-func main() {}
+func main() {
+	var p1, p2 Point
+	var r Rectangle
+	p1 = NewPoint(10.5, 6.9)
+	p2 = NewPoint(4, 0)
+	r = NewRectangle(p1, p2)
+	fmt.Println(r)
+	Rotate(&r, 'R')
+	fmt.Println(r)
+}
