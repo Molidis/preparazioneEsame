@@ -11,7 +11,10 @@ type Rectangle struct {
 }
 
 func NewPoint(x, y float64) Point {
-	return Point(x, y)
+	var p Point
+	p.x = x
+	p.y = y
+	return p
 }
 
 func NewRectangle(p1, p2 Point) Rectangle {
