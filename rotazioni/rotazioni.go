@@ -54,3 +54,5 @@ func Rotate(r *Rectangle, dir byte) {
 func (r Rectangle) String() string {
 	return fmt.Sprintf("(%v %v)", r.pLL, r.pUr)
 }
+
+func main() {}
