@@ -24,11 +24,15 @@ func distanzaPunti(x1, y1, x2, y2 float64) float64 {
 }
 
 func tocca(cerc1, cerc2 Cerchio) bool {
-	return distanzaPunti(cerc1.x, cerc1.y, cerc2.x, cerc2.y) == cerc1.raggio+cerc2.raggio+1e-6
+	dist := distanzaPunti(cerc1.x, cerc1.y, cerc2.x, cerc2.y)
+	sumRaggi := cerc1.raggio + cerc2.raggio
+	diffRaggi := math.Abs(cerc1.raggio - cerc2.raggio)
+
+	return dist >= diffRaggi+1e-6 && dist <= diffRaggi-1e-6 || dist <= sumRaggi+1e-6 && dist >= sumRaggi-1e-6
 }
 
 func maggiore(cerc1, cerc2 Cerchio) bool {
-	return cerc1.raggio > cerc2.raggio
+	return cerc1.raggio < cerc2.raggio
 }
 
 func main() {
@@ -42,7 +46,7 @@ func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		descr := scanner.Text()
-		if descr == "" && scanner.Err() == io.EOF {
+		if scanner.Err() == io.EOF {
 			break
 		}
 		c := newCircle(descr)
@@ -57,5 +61,6 @@ func main() {
 		} else {
 			fmt.Println(", minore o uguale")
 		}
+		cerc0 = c
 	}
 }
