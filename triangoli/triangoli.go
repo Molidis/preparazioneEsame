@@ -38,16 +38,17 @@ func newTriangolo(A, B, C Punto) (Triangolo, error) {
 }
 
 func tipoTriangolo(tri Triangolo) int {
-	var latiUguali int
 	l := lunghezzeLati(tri.P1, tri.P2, tri.P3)
-	for i := 0; i < 3; i++ {
-		for j := i + 1; j < 3; j++ {
-			if l[i] == l[j] {
-				latiUguali++
-			}
-		}
+
+	if (l[0] >= l[1] && l[0] <= l[1]+1e-6) || (l[1] >= l[2] && l[1] <= l[2]+1e-6) || (l[2] >= l[0] && l[2] <= l[0]+1e-6) {
+		return 3
 	}
-	return latiUguali
+
+	if l[0] == l[1] || l[1] == l[2] || l[0] == l[2] {
+		return 2
+	}
+
+	return 0
 }
 
 func main() {
@@ -57,16 +58,11 @@ func main() {
 
 	triangolo, err := newTriangolo(P1, P2, P3)
 	if err != nil {
+		fmt.Println(lunghezzeLati(P2, P1, P3))
 		fmt.Println(err)
 	} else {
-		fmt.Println(lunghezzeLati(P1, P2, P3))
-		switch tipoTriangolo(triangolo) {
-		case 0:
-			fmt.Println("scaleno")
-		case 2:
-			fmt.Println("isoscele")
-		case 3:
-			fmt.Println("equilatero")
-		}
+		fmt.Println(lunghezzeLati(P2, P1, P3))
+		fmt.Println("triangolo", triangolo)
+		fmt.Println("tipo", tipoTriangolo(triangolo))
 	}
 }
