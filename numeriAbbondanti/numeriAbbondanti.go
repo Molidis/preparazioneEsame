@@ -20,7 +20,7 @@ func Abbondante(n int) bool {
 func main() {
 	var n, j int
 	fmt.Scan(&n)
-	for i := 1; j <= n; i++ {
+	for i := 1; j < n; i++ {
 		if Abbondante(i) {
 			fmt.Println(i)
 			j++
