@@ -1,0 +1,24 @@
+package main
+
+import (
+	"fmt"
+)
+
+func Abbondante(n int) bool {
+	if n < 0 {
+		return false
+	}
+	var somma int
+	for i := 1; i < n; i++ {
+		if n%i == 0 {
+			somma += i
+		}
+	}
+	return somma > n
+}
+
+func main() {
+	var n int
+	fmt.Scan(&n)
+	fmt.Println(Abbondante(n))
+}

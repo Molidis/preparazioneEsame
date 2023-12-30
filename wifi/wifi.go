@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
 	"os"
@@ -65,8 +66,11 @@ func PiuPotente(elenco []Wifi, banda string) int {
 func main() {
 	var elenco []Wifi
 	var line string
+	var banda string
 
-	banda := os.Args[2]
+	if len(os.Args) > 2 {
+		banda = os.Args[2]
+	}
 
 	f, err := os.Open(os.Args[1])
 	if err != nil {
@@ -74,8 +78,9 @@ func main() {
 	}
 	defer f.Close()
 
-	for {
-		_, err := fmt.Fscanf(f, "%s\n", &line)
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		line = scanner.Text()
 		if err != nil {
 			break
 		}
