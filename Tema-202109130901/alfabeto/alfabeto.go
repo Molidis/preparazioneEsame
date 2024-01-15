@@ -16,19 +16,20 @@ func main() {
 	parola := strings.ToLower(os.Args[1])
 	dizionario := make(map[rune]string)
 
-	for _, letter := range parola {
-		if _, ok := dizionario[letter]; !ok {
-			fmt.Printf(" %c? ", letter)
+	for _, lettera := range parola {
+		if _, ok := dizionario[lettera]; !ok {
+			fmt.Printf("%c? ", lettera)
 			scanner := bufio.NewScanner(os.Stdin)
+			scanner.Split(bufio.ScanLines)
 			scanner.Scan()
 			name := scanner.Text()
-			dizionario[letter] = name
+			dizionario[lettera] = name
 		}
 	}
 
 	var translation []string
-	for _, letter := range parola {
-		translation = append(translation, dizionario[letter])
+	for _, lettera := range parola {
+		translation = append(translation, dizionario[lettera])
 	}
 
 	fmt.Println(strings.Join(translation, " - "))
