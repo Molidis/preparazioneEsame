@@ -29,4 +29,5 @@ func main() {
 			fmt.Println(scanner.Err())
 		}
 	}
+	fmt.Println()
 }
