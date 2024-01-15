@@ -9,8 +9,11 @@ import (
 
 func main() {
 	var runes []string
+	var translation []string
 	var i int
+
 	scanner := bufio.NewScanner(os.Stdin)
+
 	for scanner.Scan() {
 		runes = append(runes, scanner.Text())
 	}
@@ -32,7 +35,6 @@ func main() {
 		}
 	}
 
-	var translation []string
 	for _, lettera := range parola {
 		translation = append(translation, dizionario[lettera])
 	}
