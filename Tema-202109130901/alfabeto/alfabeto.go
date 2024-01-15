@@ -8,6 +8,13 @@ import (
 )
 
 func main() {
+	var runes []string
+	var i int
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		runes = append(runes, scanner.Text())
+	}
+
 	if len(os.Args) < 2 {
 		fmt.Println("Inserisci almeno una parola come argomento.")
 		return
@@ -19,10 +26,8 @@ func main() {
 	for _, lettera := range parola {
 		if _, ok := dizionario[lettera]; !ok {
 			fmt.Printf("%c? ", lettera)
-			scanner := bufio.NewScanner(os.Stdin)
-			scanner.Split(bufio.ScanLines)
-			scanner.Scan()
-			name := scanner.Text()
+			name := runes[i]
+			i++
 			dizionario[lettera] = name
 		}
 	}
