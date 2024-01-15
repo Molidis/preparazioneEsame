@@ -11,6 +11,8 @@ func main() {
 	var numero int
 
 	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	fmt.Sscanf(scanner.Text(), "%d", &primo)
 
 	for scanner.Scan() {
 		fmt.Sscanf(scanner.Text(), "%d", &numero)
