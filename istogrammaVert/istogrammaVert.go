@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 )
@@ -33,11 +34,11 @@ func main() {
 	for i := 0; i <= max; i++ {
 		for j := 0; j <= len(numeri)-1; j++ {
 			if max-mappa[j] >= i {
-				print(" ")
+				fmt.Print(" ")
 			} else {
-				print("*")
+				fmt.Print("*")
 			}
 		}
-		print("\n")
+		fmt.Print("\n")
 	}
 }
