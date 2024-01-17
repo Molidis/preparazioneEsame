@@ -72,7 +72,7 @@ func TestUnArg(t *testing.T) {
 }
 
 func Test9999(t *testing.T) {
-	lanciaGenerica(t, prog, "9999", "cisterna 10.00 cm x 10.00 cm x 10.00 cm\nlivello attuale: 0.00 cm, litri 0\n","10","10","10")
+	lanciaGenerica(t, prog, "9999", "cisterna 10.00 cm x 10.00 cm x 10.00 cm\nlivello attuale: 0.00 cm, litri 0\n", "10", "10", "10")
 }
 
 func TestRiempi(t *testing.T) {
@@ -154,7 +154,7 @@ func TestArgNonNum(t *testing.T) {
 func TestString(t *testing.T) {
 	var cisterna = Cisterna{120, 80, 100, 50}
 	fmt.Println(cisterna)
-	
+
 	if cisterna.String() != "cisterna 120.00 cm x 80.00 cm x 100.00 cm\nlivello attuale: 50.00 cm, litri 480" {
 		t.Fail()
 	}
