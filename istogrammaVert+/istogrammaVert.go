@@ -31,7 +31,7 @@ func main() {
 		mappa[i] = numeri[i]
 	}
 
-	for i := 0; i <= max; i++ {
+	for i := 1; i <= max; i++ {
 		for j := 0; j <= len(numeri)-1; j++ {
 			if max-mappa[j] >= i {
 				fmt.Print(" ")
