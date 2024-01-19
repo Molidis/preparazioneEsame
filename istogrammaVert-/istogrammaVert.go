@@ -15,6 +15,7 @@ func max(args []int) int {
 	}
 	return max
 }
+
 func main() {
 	var mappa map[int]int
 	var numeri []int
