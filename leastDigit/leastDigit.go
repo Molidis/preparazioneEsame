@@ -11,7 +11,7 @@ func checkInput(s string) int {
 
 	n, err := strconv.Atoi(s)
 
-	if err != nil || (n < -1) {
+	if err != nil || n < -1 {
 		return -2
 	} else {
 		return n
@@ -30,20 +30,19 @@ func main() {
 
 	mappa := make(map[int]int)
 	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Split(bufio.ScanWords)
 
 	for scanner.Scan() {
-		input := scanner.Text()
-		num := checkInput(input)
-		digit := leastDigit(num)
-		if num > -1 {
-			mappa[digit]++
-		} else if num == -1 {
-			return
+		s := scanner.Text()
+		n := checkInput(s)
+		if n > -1 {
+			mappa[leastDigit(n)]++
+		} else if n == -1 {
+			break
 		}
 	}
 
-	// Print the map
-	for key, value := range mappa {
-		fmt.Printf("%d - %d\n", key, value)
+	for i := 0; i < 10; i++ {
+		fmt.Println(i, "-", mappa[i])
 	}
 }
