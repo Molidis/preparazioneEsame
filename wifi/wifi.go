@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"strconv"
+	"strings"
 )
 
 type Wifi struct {
@@ -24,13 +26,12 @@ func NewWifi(ssid string, channel int, frequency int, signal_dBm int) (Wifi, boo
 }
 
 func NewWifiDaStringa(line string) (Wifi, bool) {
-	var ssid string
-	var channel, frequency, signal_dBm int
-	_, err := fmt.Sscanf(line, "%s,%d,%d,%d", &ssid, &channel, &frequency, &signal_dBm)
-	if err == nil {
-		return Wifi{ssid, channel, frequency, signal_dBm}, true
-	}
-	return Wifi{ssid, channel, frequency, signal_dBm}, false
+	fields := strings.Split(line, ",")
+	ssid := fields[0]
+	channel, _ := strconv.Atoi(fields[1])
+	frequency, _ := strconv.Atoi(fields[2])
+	signal_dBm, _ := strconv.Atoi(fields[3])
+	return NewWifi(ssid, channel, frequency, signal_dBm)
 }
 
 func (wifi Wifi) String() string {
@@ -67,6 +68,7 @@ func PiuPotente(elenco []Wifi, banda string) int {
 
 func main() {
 
+	var counter int
 	var elenco []Wifi
 	var banda string
 
@@ -81,7 +83,11 @@ func main() {
 	for scanner.Scan() {
 		line := scanner.Text()
 		wifi, _ := NewWifiDaStringa(line)
-		elenco = append(elenco, wifi)
+
+		if counter > 0 {
+			elenco = append(elenco, wifi)
+		}
+		counter++
 	}
 
 	fmt.Println(elenco[PiuPotente(elenco, banda)].String())
