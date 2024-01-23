@@ -84,6 +84,5 @@ func main() {
 		elenco = append(elenco, wifi)
 	}
 
-	fmt.Println(elenco)
 	fmt.Println(elenco[PiuPotente(elenco, banda)].String())
 }
