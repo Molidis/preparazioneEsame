@@ -98,25 +98,22 @@ func TestSquares(t *testing.T) {
 
 }
 
-
 func TestNoArgs(t *testing.T) {
 	lanciaGenerica(t, prog, "nil", "too few arguments\n")
 }
 
 func TestWrongArg(t *testing.T) {
-	lanciaGenerica(t, prog, "nil", "required integer value\n","aldkhaslk")
+	lanciaGenerica(t, prog, "nil", "required integer value\n", "aldkhaslk")
 }
 
-
 func TestWrongArgFloat(t *testing.T) {
-	lanciaGenerica(t, prog, "nil", "required integer value\n","7.7")
+	lanciaGenerica(t, prog, "nil", "required integer value\n", "7.7")
 }
 
 func TestWrongArgFloatComma(t *testing.T) {
-	lanciaGenerica(t, prog, "nil", "required integer value\n","7,7")
+	lanciaGenerica(t, prog, "nil", "required integer value\n", "7,7")
 }
 
-
 func TestMain(t *testing.T) {
-	lanciaGenerica(t, prog, "nil", "******\n*    *\n* ** *\n* ** *\n*    *\n******\n","6")
+	lanciaGenerica(t, prog, "nil", "******\n*    *\n* ** *\n* ** *\n*    *\n******\n", "6")
 }
