@@ -28,9 +28,9 @@ func NewWifiDaStringa(line string) (Wifi, bool) {
 	var channel, frequency, signal_dBm int
 	_, err := fmt.Sscanf(line, "%s,%d,%d,%d", &ssid, &channel, &frequency, &signal_dBm)
 	if err == nil {
-		return NewWifi(ssid, channel, frequency, signal_dBm)
+		return Wifi{ssid, channel, frequency, signal_dBm}, true
 	}
-	return Wifi{}, false
+	return Wifi{ssid, channel, frequency, signal_dBm}, false
 }
 
 func (wifi Wifi) String() string {
@@ -67,24 +67,23 @@ func PiuPotente(elenco []Wifi, banda string) int {
 
 func main() {
 
-	var wifis []Wifi
+	var elenco []Wifi
 	var banda string
-	args := os.Args[1:]
 
-	f, _ := os.Open(args[0])
+	f, _ := os.Open(os.Args[1])
 	defer f.Close()
 
-	if len(args) > 1 {
-		banda = args[1]
+	if len(os.Args) > 2 {
+		banda = os.Args[2]
 	}
 
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		line := scanner.Text()
 		wifi, _ := NewWifiDaStringa(line)
-		wifis = append(wifis, wifi)
+		elenco = append(elenco, wifi)
 	}
 
-	strongerIndex := PiuPotente(wifis, banda)
-	fmt.Println(wifis[strongerIndex].String())
+	fmt.Println(elenco)
+	fmt.Println(elenco[PiuPotente(elenco, banda)].String())
 }
