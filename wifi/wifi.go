@@ -13,16 +13,11 @@ type Wifi struct {
 }
 
 func NewWifi(ssid string, channel int, frequency int, signal_dBm int) (Wifi, bool) {
-	if len(ssid) > 0 {
-		if (channel > 0 && channel < 15) && (frequency >= 2412 && frequency <= 2484) {
-			if signal_dBm < -20 {
-				return Wifi{ssid, channel, frequency, signal_dBm}, true
-			}
-		}
-		if (channel > 6 && channel < 197) && (frequency >= 5035 && frequency <= 5980) {
-			if signal_dBm < -20 {
-				return Wifi{ssid, channel, frequency, signal_dBm}, true
-			}
+	if len(ssid) > 0 && signal_dBm <= -20 {
+		if (channel >= 1 && channel <= 14) && (frequency >= 2412 && frequency <= 2484) {
+			return Wifi{ssid, channel, frequency, signal_dBm}, true
+		} else if (channel >= 7 && channel <= 196) && (frequency >= 5035 && frequency <= 5980) {
+			return Wifi{ssid, channel, frequency, signal_dBm}, true
 		}
 	}
 	return Wifi{}, false
@@ -86,11 +81,10 @@ func main() {
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		line := scanner.Text()
-		w, _ := NewWifiDaStringa(line)
-		wifis = append(wifis, w)
+		wifi, _ := NewWifiDaStringa(line)
+		wifis = append(wifis, wifi)
 	}
 
 	strongerIndex := PiuPotente(wifis, banda)
-	strongerWifi := wifis[strongerIndex].String()
-	fmt.Println(strongerWifi)
+	fmt.Println(wifis[strongerIndex].String())
 }
