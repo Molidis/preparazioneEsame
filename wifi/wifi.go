@@ -80,6 +80,7 @@ func main() {
 	}
 
 	scanner := bufio.NewScanner(f)
+	scanner.Split(bufio.ScanLines)
 	for scanner.Scan() {
 		line := scanner.Text()
 		wifi, _ := NewWifiDaStringa(line)
