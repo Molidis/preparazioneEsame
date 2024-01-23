@@ -35,7 +35,7 @@ func NewWifiDaStringa(line string) (Wifi, bool) {
 }
 
 func (wifi Wifi) String() string {
-	return fmt.Sprintf("%s,%d,%d,%d,%f", wifi.ssid, wifi.channel, wifi.frequency, wifi.signal_dBm, ConvertiDBinWatt(wifi.signal_dBm))
+	return fmt.Sprintf("%s,%d,%d,%d,", wifi.ssid, wifi.channel, wifi.frequency, wifi.signal_dBm)
 }
 
 func ConvertiDBinWatt(signal_dBm int) float64 {
@@ -43,27 +43,32 @@ func ConvertiDBinWatt(signal_dBm int) float64 {
 }
 
 func PiuPotente(elenco []Wifi, banda string) int {
-	var max int
-	for i := 0; i < len(elenco)-1; i++ {
-		if banda == "2GHz" {
-			if elenco[i].frequency >= 2412 && elenco[i].frequency <= 2484 {
-				if elenco[i].signal_dBm > max {
-					max = elenco[i].signal_dBm
+	var indice, max int
+
+	for i, wifi := range elenco {
+		switch banda {
+		case "2GHz":
+			if wifi.frequency >= 2412 && wifi.frequency <= 2484 {
+				if wifi.signal_dBm > max {
+					max = wifi.signal_dBm
+					indice = i
 				}
 			}
-		} else if banda == "5GHz" {
-			if elenco[i].frequency >= 5035 && elenco[i].frequency <= 5980 {
-				if elenco[i].signal_dBm > max {
-					max = elenco[i].signal_dBm
+		case "5GHz":
+			if wifi.frequency >= 5035 && wifi.frequency <= 5980 {
+				if wifi.signal_dBm > max {
+					max = wifi.signal_dBm
+					indice = i
 				}
 			}
-		} else {
-			if elenco[i].signal_dBm > max {
-				max = elenco[i].signal_dBm
+		default:
+			if wifi.signal_dBm > max {
+				max = wifi.signal_dBm
+				indice = i
 			}
 		}
 	}
-	return max
+	return indice
 }
 
 func main() {
@@ -80,16 +85,16 @@ func main() {
 	}
 
 	scanner := bufio.NewScanner(f)
-	scanner.Split(bufio.ScanLines)
+
 	for scanner.Scan() {
 		line := scanner.Text()
-		wifi, _ := NewWifiDaStringa(line)
 
 		if counter > 0 {
+			wifi, _ := NewWifiDaStringa(line)
 			elenco = append(elenco, wifi)
 		}
 		counter++
 	}
-
-	fmt.Println(elenco[PiuPotente(elenco, banda)].String())
+	fmt.Println(PiuPotente(elenco, banda))
+	fmt.Print(elenco[PiuPotente(elenco, banda)].String(), ConvertiDBinWatt(elenco[PiuPotente(elenco, banda)].signal_dBm))
 }
