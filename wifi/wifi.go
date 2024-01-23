@@ -77,11 +77,11 @@ func main() {
 	var stronger int
 	args := os.Args[1:]
 
-	f, _ := os.Open(args[1])
+	f, _ := os.Open(args[0])
 	defer f.Close()
 
-	if len(os.Args) > 2 {
-		banda = args[2]
+	if len(args) > 1 {
+		banda = args[1]
 	}
 
 	scanner := bufio.NewScanner(f)
