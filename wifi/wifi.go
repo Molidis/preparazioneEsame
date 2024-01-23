@@ -74,7 +74,6 @@ func main() {
 
 	var wifis []Wifi
 	var banda string
-	var stronger int
 	args := os.Args[1:]
 
 	f, _ := os.Open(args[0])
@@ -91,6 +90,7 @@ func main() {
 		wifis = append(wifis, w)
 	}
 
-	stronger = PiuPotente(wifis, banda)
-	fmt.Println(wifis[stronger])
+	strongerIndex := PiuPotente(wifis, banda)
+	strongerWifi := wifis[strongerIndex].String()
+	fmt.Println(strongerWifi)
 }
