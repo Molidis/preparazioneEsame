@@ -35,7 +35,7 @@ func NewWifiDaStringa(line string) (Wifi, bool) {
 }
 
 func (wifi Wifi) String() string {
-	return fmt.Sprintf("%s,%d,%d,%d", wifi.ssid, wifi.channel, wifi.frequency, wifi.signal_dBm)
+	return fmt.Sprintf("%s,%d,%d,%d,%f", wifi.ssid, wifi.channel, wifi.frequency, wifi.signal_dBm, ConvertiDBinWatt(wifi.signal_dBm))
 }
 
 func ConvertiDBinWatt(signal_dBm int) float64 {
