@@ -29,9 +29,7 @@ func main() {
 		mappa[len(s)] = s
 	}
 
-	for key, value := range mappa {
-		for key = 0; key < len(mappa); key++ {
-			fmt.Printf("%d : %s\n", key, value)
-		}
+	for key := 0; key < len(mappa); key++ {
+		fmt.Printf("%d : %s\n", key, mappa[key])
 	}
 }
