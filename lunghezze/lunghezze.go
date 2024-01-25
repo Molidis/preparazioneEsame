@@ -39,9 +39,9 @@ func main() {
 		mappa[len(s)] += " " + s
 	}
 
-	for key := 1; key < maxKey(mappa); key++ {
+	for key := 1; key < maxKey(mappa)+1; key++ {
 		if len(mappa[key]) > key {
-			fmt.Printf("%d :%s\n", key, mappa[key])
+			fmt.Printf("%d :%s \n", key, mappa[key])
 		}
 	}
 }
