@@ -6,6 +6,16 @@ import (
 	"os"
 )
 
+func maxKey(mappa map[int]string) int {
+	max := 0
+	for key := range mappa {
+		if key > max {
+			max = key
+		}
+	}
+	return max
+}
+
 func main() {
 	mappa := make(map[int]string)
 
@@ -29,7 +39,7 @@ func main() {
 		mappa[len(s)] += " " + s
 	}
 
-	for key := 1; key < len(mappa); key++ {
+	for key := 1; key < maxKey(mappa); key++ {
 		if len(mappa[key]) > key {
 			fmt.Printf("%d :%s\n", key, mappa[key])
 		}
