@@ -4,10 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 )
 
 func main() {
 	mappa := make(map[string]int)
+	var keys []string
 
 	if len(os.Args) != 2 {
 		fmt.Println("Fornire 1 nome di file")
@@ -29,7 +31,12 @@ func main() {
 		mappa[s] = len(s)
 	}
 
+	for k := range mappa {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
 	for key, value := range mappa {
-		fmt.Printf("%d : %s", value, key)
+		fmt.Printf("%d : %s\n", value, key)
 	}
 }
