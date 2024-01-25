@@ -36,7 +36,7 @@ func main() {
 	}
 	sort.Strings(keys)
 
-	for key, value := range mappa {
-		fmt.Printf("%d : %s\n", value, key)
+	for _, k := range keys {
+		fmt.Printf("%d : %s\n", mappa[k], k)
 	}
 }
