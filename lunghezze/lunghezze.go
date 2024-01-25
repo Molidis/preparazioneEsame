@@ -30,6 +30,8 @@ func main() {
 	}
 
 	for key := 1; key < len(mappa); key++ {
-		fmt.Printf("%d : %s\n", key, mappa[key])
+		if len(mappa[key]) > key {
+			fmt.Printf("%d :%s\n", key, mappa[key])
+		}
 	}
 }
