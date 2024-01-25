@@ -19,7 +19,9 @@ func main() {
 
 	scanner.Split(bufio.ScanWords)
 	for scanner.Scan() {
+
 		s := scanner.Text()
+
 		if s == "stop" {
 			break
 		}
@@ -27,5 +29,6 @@ func main() {
 		if len(s)%2 == 0 {
 			fmt.Println(reverse(s))
 		}
+
 	}
 }
