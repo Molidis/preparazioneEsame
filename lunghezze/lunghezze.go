@@ -4,12 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"sort"
 )
 
 func main() {
-	mappa := make(map[string]int)
-	var keys []string
+	mappa := make(map[int]string)
 
 	if len(os.Args) != 2 {
 		fmt.Println("Fornire 1 nome di file")
@@ -28,15 +26,12 @@ func main() {
 	scanner.Split(bufio.ScanWords)
 	for scanner.Scan() {
 		s := scanner.Text()
-		mappa[s] = len(s)
+		mappa[len(s)] = s
 	}
 
-	for k := range mappa {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
-	for _, k := range keys {
-		fmt.Printf("%d : %s\n", mappa[k], k)
+	for key, value := range mappa {
+		for key = 0; key < len(mappa); key++ {
+			fmt.Printf("%d : %s\n", key, value)
+		}
 	}
 }
