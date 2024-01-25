@@ -26,10 +26,10 @@ func main() {
 	scanner.Split(bufio.ScanWords)
 	for scanner.Scan() {
 		s := scanner.Text()
-		mappa[len(s)] = s
+		mappa[len(s)] += " " + s
 	}
 
-	for key := 0; key < len(mappa); key++ {
+	for key := 1; key < len(mappa); key++ {
 		fmt.Printf("%d : %s\n", key, mappa[key])
 	}
 }
