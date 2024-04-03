@@ -12,13 +12,19 @@ Scrivere un programma (il cui file deve chiamarsi 'vini.go') dotato di:
 
   - una funzione
     CreaBottiglia(nome string, anno int, gradi float32, cl int) (BottigliaVino, bool)
-    che, se i parametri sono **validi** (campi string diversi da vuoto, campi int e float maggiori di zero) crea una bottiglia corrispondente a questi dati e la restituisce insieme al valore 'true',  altrimenti restituisce una bottiglia "zero-value" e 'false'.
+    che, se i parametri sono **validi** (campi string diversi da vuoto, campi int e float maggiori di zero)
+    crea una bottiglia corrispondente a questi dati e la restituisce insieme al valore 'true',
+    altrimenti restituisce una bottiglia "zero-value" e 'false'.
 
   - una funzione
     CreaBottigliaDaRiga(riga string) (BottigliaVino, bool)
-    che crea una bottiglia a partire dalla sua rappresentazione sotto forma di riga di testo CSV (vedi esempio nelle specifiche del main);
-    se i parametri ci sono tutti e sono validi (vedi sopra), crea una bottiglia corrispondente a questi dati e la restituisce insieme al valore 'true',  altrimenti restituisce una bottiglia "zero-value" e 'false'.
-    Non sono richiesti controlli sui tipi dei dati: si può assumere che i dati, se ci sono, siano nel formato corretto (ma i valori vanno controllati).
+    che crea una bottiglia a partire dalla sua rappresentazione sotto forma di riga di testo CSV
+    (vedi esempio nelle specifiche del main);
+    se i parametri ci sono tutti e sono validi (vedi sopra),
+    crea una bottiglia corrispondente a questi dati e la restituisce insieme al valore 'true',
+    altrimenti restituisce una bottiglia "zero-value" e 'false'.
+    Non sono richiesti controlli sui tipi dei dati: si può assumere che i dati, se ci sono,
+    siano nel formato corretto (ma i valori vanno controllati).
 
   - un **metodo** per BottigliaVino
     String() string
